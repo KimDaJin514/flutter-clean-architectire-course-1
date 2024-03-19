@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:search_apple_app/data/api.dart';
 import 'package:search_apple_app/ui/home_screen.dart';
 
 void main() {
@@ -10,10 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Clean Architecture Practice App',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: HomeScreen(api: PixabayApi(),),
     );
   }
 }
