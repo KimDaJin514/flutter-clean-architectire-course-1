@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:search_apple_app/data/api.dart';
+import 'package:search_apple_app/data/photo_provider.dart';
 import 'package:search_apple_app/ui/home_screen.dart';
 
 void main() {
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Clean Architecture Practice App',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(api: PixabayApi(),),
+      home: PhotoProvider(
+        api: PixabayApi(),
+        child: const HomeScreen()),
     );
   }
 }

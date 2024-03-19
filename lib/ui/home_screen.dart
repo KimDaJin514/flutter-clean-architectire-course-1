@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:search_apple_app/data/api.dart';
+import 'package:search_apple_app/data/photo_provider.dart';
 import 'package:search_apple_app/model/Photo.dart';
 import 'package:search_apple_app/ui/widget/photo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  final PixabayApi api;
-  const HomeScreen({super.key, required this.api});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -27,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final photoProvider = PhotoProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () async{
-                    final photos = await widget.api.fetch(_textCtrl.text);
+                    final photos = await photoProvider.api.fetch(_textCtrl.text);
                     setState(() {
                       _photos = photos;
                     });
