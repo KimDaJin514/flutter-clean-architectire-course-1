@@ -5,7 +5,7 @@ import 'package:search_apple_app/model/Photo.dart';
 import 'package:search_apple_app/ui/home_viewmodel.dart';
 
 void main() {
-  test('Stream should work well', () async {
+  test('Fetch func should work well', () async {
     // final viewModel = HomeViewModel(PixabayApi());
     // 이렇게 되면 PixabayApi 에 문제가 생기면 제대로 동작하지 않는다.
     // => HomeViewModel이 PixabayApi에 의존적이다.
