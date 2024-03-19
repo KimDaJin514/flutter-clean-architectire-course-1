@@ -98,4 +98,19 @@ class Photo {
     map['userImageURL'] = userImageURL;
     return map;
   }
+
+  // 기존엔 해시코드가 같아야 같은 값으로 보지만
+  // id 가 동일하면 같은 값으로 보기로 재정의
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Photo && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
+
+  @override
+  String toString() {
+    return 'Photo{id: $id}';
+  }
 }
