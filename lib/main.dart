@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:search_apple_app/data/pixabay_api.dart';
 import 'package:search_apple_app/data/photo_provider.dart';
 import 'package:search_apple_app/ui/home_screen.dart';
@@ -16,9 +17,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Clean Architecture Practice App',
       debugShowCheckedModeBanner: false,
-      home: PhotoProvider(
-        viewModel: HomeViewModel(PixabayApi()),
-        child: const HomeScreen()),
+      // InheritedWidget 사용
+      // home: PhotoProvider(
+      //   viewModel: HomeViewModel(PixabayApi()),
+      //   child: const HomeScreen()),
+
+      // Provider 사용
+      home: ChangeNotifierProvider(
+        create: (_) => HomeViewModel(PixabayApi()),
+        child: const HomeScreen(),
+      ),
     );
   }
 }

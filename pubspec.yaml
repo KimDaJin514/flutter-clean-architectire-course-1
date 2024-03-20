@@ -38,6 +38,7 @@ dependencies:
   http:
   json_annotation:
   equatable:
+  provider:
 
 
 dev_dependencies:
