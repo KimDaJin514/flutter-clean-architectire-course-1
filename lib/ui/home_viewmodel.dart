@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:search_apple_app/data/photo_api_repository.dart';
-import 'package:search_apple_app/model/Photo.dart';
+import 'package:search_apple_app/model/photo.dart';
 
 class HomeViewModel {
   // final PixabayApi api;

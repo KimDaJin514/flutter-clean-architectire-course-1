@@ -36,12 +36,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   http:
+  json_annotation:
+  equatable:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito:
   build_runner:
+  json_serializable: # 빌드할 때만 필요
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

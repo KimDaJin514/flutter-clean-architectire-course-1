@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:search_apple_app/data/pixabay_api.dart';
 import 'package:search_apple_app/data/photo_provider.dart';
-import 'package:search_apple_app/model/Photo.dart';
+import 'package:search_apple_app/model/photo.dart';
 import 'package:search_apple_app/ui/widget/photo_widget.dart';
 
 class HomeScreen extends StatefulWidget {

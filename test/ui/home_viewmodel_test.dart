@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:search_apple_app/data/photo_api_repository.dart';
 import 'package:search_apple_app/data/pixabay_api.dart';
-import 'package:search_apple_app/model/Photo.dart';
+import 'package:search_apple_app/model/photo.dart';
 import 'package:search_apple_app/ui/home_viewmodel.dart';
 
 void main() {
