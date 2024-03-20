@@ -3,6 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:search_apple_app/data/pixabay_api.dart';
 import 'package:http/http.dart' as http;
+import 'package:search_apple_app/model/photo.dart';
 
 import 'pixabay_api_test.mocks.dart';
 

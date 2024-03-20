@@ -1,3 +1,4 @@
+// 기본 Photo 모델
 // class Photo {
 //   Photo({
 //     required this.id,
@@ -77,29 +78,51 @@
 //   }
 // }
 
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
+// JsonSerializable 사용 모델
+
+// import 'package:equatable/equatable.dart';
+// import 'package:json_annotation/json_annotation.dart';
+//
+// part 'photo.g.dart';
+//
+// @JsonSerializable()
+// class Photo extends Equatable{
+//   final int id;
+//   final String tags;
+//
+//   @JsonKey(name: 'userImageURL')
+//   final String userImageUrl;
+//
+//   const Photo({
+//     required this.id,
+//     required this.tags,
+//     required this.userImageUrl,
+//   });
+//
+//   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
+//
+//   Map<String, dynamic> toJson() => _$PhotoToJson(this);
+//
+//   @override
+//   List<Object?> get props => [id];
+// }
+
+
+
+// Freezed 사용 모델
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'photo.freezed.dart';
 part 'photo.g.dart';
 
-@JsonSerializable()
-class Photo extends Equatable{
-  final int id;
-  final String tags;
-
-  @JsonKey(name: 'userImageURL')
-  final String userImageUrl;
-
-  const Photo({
-    required this.id,
-    required this.tags,
-    required this.userImageUrl,
-  });
+@freezed
+class Photo with _$Photo {
+  factory Photo({
+    required int id,
+    required String tags,
+    required String userImageURL,
+  }) = _Photo;
 
   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PhotoToJson(this);
-
-  @override
-  List<Object?> get props => [id];
 }

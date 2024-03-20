@@ -39,12 +39,14 @@ dependencies:
   json_annotation:
   equatable:
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito:
   build_runner:
-  json_serializable: # 빌드할 때만 필요
+  json_serializable: # 빌드할 때만 필요 (코드 제너레이트 기능이기 때문에)
+  freezed:  # (코드 제너레이트 기능이기 때문에)
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
