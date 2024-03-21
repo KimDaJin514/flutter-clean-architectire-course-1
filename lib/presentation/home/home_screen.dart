@@ -56,9 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () async{
-                    // viewModel.fetch(_textCtrl.text);
+                    viewModel.fetch(_textCtrl.text);
 
-                    context.read<HomeViewModel>().fetch(_textCtrl.text);
+                    // context.read<HomeViewModel>().fetch(_textCtrl.text);
                   },
                   icon: const Icon(
                     Icons.search,

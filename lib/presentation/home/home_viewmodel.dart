@@ -23,13 +23,12 @@ import 'package:search_apple_app/domain/model/photo.dart';
 
 class HomeViewModel with ChangeNotifier{
   final PhotoApiRepository repository;
+  HomeViewModel(this.repository);
 
   List<Photo> _photos = [];
   // List<Photo> get photos => _photos;
   // 밖에서 수정하지 못 하도록
   UnmodifiableListView<Photo> get photos => UnmodifiableListView(_photos);
-
-  HomeViewModel(this.repository);
 
   Future<void> fetch(String query) async{
     final result = await repository.fetch(query);
