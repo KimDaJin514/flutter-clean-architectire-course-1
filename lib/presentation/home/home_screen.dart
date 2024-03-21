@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -18,9 +19,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _textCtrl = TextEditingController();
+  StreamSubscription? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<HomeViewModel>();
+      viewModel.eventStream.listen((event) {
+        event.when(showSnackBar: (message) {
+          final snackBar = SnackBar(content: Text(message),);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        });
+      });
+    });
+
+  }
 
   @override
   void dispose() {
+    _subscription?.cancel();
     _textCtrl.dispose();
 
     super.dispose();
@@ -36,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // Provider 2 - Widget build(BuildContext context) 가 전체 리빌드
     final viewModel = context.watch<HomeViewModel>();
+    final state = viewModel.state;
 
     return Scaffold(
       appBar: AppBar(
@@ -98,9 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
             ),
-            itemCount: viewModel.photos.length,
+            itemCount: state.photos.length,
             itemBuilder: (context, index) {
-              return PhotoWidget(photo: viewModel.photos[index],);
+              return PhotoWidget(photo: state.photos[index],);
             },
           ),
         )

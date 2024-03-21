@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+import 'package:search_apple_app/data/data_source/result.dart';
 import 'package:search_apple_app/domain/repository/photo_api_repository.dart';
 import 'package:search_apple_app/domain/model/photo.dart';
+import 'package:search_apple_app/presentation/home/home_state.dart';
+import 'package:search_apple_app/presentation/home/home_ui_event.dart';
 
 // class HomeViewModel {
 //   // final PixabayApi api;
@@ -21,19 +24,40 @@ import 'package:search_apple_app/domain/model/photo.dart';
 //   }
 // }
 
-class HomeViewModel with ChangeNotifier{
+class HomeViewModel with ChangeNotifier {
   final PhotoApiRepository repository;
+
+  HomeState _state = HomeState([], false);
+  HomeState get state => _state;
+
+  final _eventController = StreamController<HomeUiEvent>();
+  Stream<HomeUiEvent> get eventStream => _eventController.stream;
+
   HomeViewModel(this.repository);
 
-  List<Photo> _photos = [];
-  // List<Photo> get photos => _photos;
-  // 밖에서 수정하지 못 하도록
-  UnmodifiableListView<Photo> get photos => UnmodifiableListView(_photos);
+  // List<Photo> _photos = [];
+  // // List<Photo> get photos => _photos;
+  // // 밖에서 수정하지 못 하도록
+  // UnmodifiableListView<Photo> get photos => UnmodifiableListView(_photos);
 
-  Future<void> fetch(String query) async{
-    final result = await repository.fetch(query);
-    _photos = result;
+  Future<void> fetch(String query) async {
+    _state = state.copy(isLoading: true);
+    notifyListeners();
 
+    final Result<List<Photo>> result = await repository.fetch(query);
+
+    result.when(
+      success: (photos) {
+        // _photos = photos;
+        _state = state.copy(photos: photos);
+        notifyListeners();
+      },
+      error: (message) {
+        _eventController.add(HomeUiEvent.showSnackBar(message));
+      },
+    );
+
+    _state = state.copy(isLoading: false);
     notifyListeners();
   }
 }
