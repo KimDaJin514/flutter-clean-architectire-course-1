@@ -27,7 +27,8 @@ import 'package:search_apple_app/presentation/home/home_ui_event.dart';
 class HomeViewModel with ChangeNotifier {
   final PhotoApiRepository repository;
 
-  HomeState _state = HomeState([], false);
+  // * 뷰모델에서 외부로 보여지는 데이터들은 불변 객체로 읽기 전용으로 만들자 !!
+  HomeState _state = const HomeState([], false);
   HomeState get state => _state;
 
   final _eventController = StreamController<HomeUiEvent>();
@@ -41,7 +42,7 @@ class HomeViewModel with ChangeNotifier {
   // UnmodifiableListView<Photo> get photos => UnmodifiableListView(_photos);
 
   Future<void> fetch(String query) async {
-    _state = state.copy(isLoading: true);
+    _state = state.copyWith(isLoading: true);
     notifyListeners();
 
     final Result<List<Photo>> result = await repository.fetch(query);
@@ -49,7 +50,7 @@ class HomeViewModel with ChangeNotifier {
     result.when(
       success: (photos) {
         // _photos = photos;
-        _state = state.copy(photos: photos);
+        _state = state.copyWith(photos: photos);
         notifyListeners();
       },
       error: (message) {
@@ -57,7 +58,7 @@ class HomeViewModel with ChangeNotifier {
       },
     );
 
-    _state = state.copy(isLoading: false);
+    _state = state.copyWith(isLoading: false);
     notifyListeners();
   }
 }
