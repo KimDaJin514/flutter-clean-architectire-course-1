@@ -91,23 +91,19 @@ class _HomeScreenState extends State<HomeScreen> {
             //   }
             // ),
 
-            Consumer<HomeViewModel>(
-              builder: (_, viewModel, child) {
-                return Expanded(
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                    ),
-                    itemCount: viewModel.photos.length,
-                    itemBuilder: (context, index) {
-                      return PhotoWidget(photo: viewModel.photos[index],);
-                    },
-                  ),
-                );
-              },
-            )
+        Expanded(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+            ),
+            itemCount: viewModel.photos.length,
+            itemBuilder: (context, index) {
+              return PhotoWidget(photo: viewModel.photos[index],);
+            },
+          ),
+        )
           ],
         ),
       ),
