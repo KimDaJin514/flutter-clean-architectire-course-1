@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:search_apple_app/data/pixabay_api.dart';
-import 'package:search_apple_app/data/photo_provider.dart';
-import 'package:search_apple_app/model/photo.dart';
-import 'package:search_apple_app/ui/home_viewmodel.dart';
-import 'package:search_apple_app/ui/widget/photo_widget.dart';
+import 'package:search_apple_app/data/respository/photo_api_repository_impl.dart';
+import 'package:search_apple_app/trash/photo_provider.dart';
+import 'package:search_apple_app/domain/model/photo.dart';
+import 'package:search_apple_app/presentation/home/home_viewmodel.dart';
+import 'package:search_apple_app/presentation/home/components/photo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
-import 'package:search_apple_app/data/photo_api_repository.dart';
-import 'package:search_apple_app/model/photo.dart';
+import 'package:search_apple_app/domain/repository/photo_api_repository.dart';
+import 'package:search_apple_app/domain/model/photo.dart';
 
 // class HomeViewModel {
 //   // final PixabayApi api;

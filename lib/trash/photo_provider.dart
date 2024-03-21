@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../ui/home_viewmodel.dart';
+import '../presentation/home/home_viewmodel.dart';
 
 // InheritedWidget 사용
 

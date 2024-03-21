@@ -1,24 +1,25 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:search_apple_app/data/pixabay_api.dart';
+import 'package:search_apple_app/data/data_source/pixabay_api.dart';
+import 'package:search_apple_app/data/respository/photo_api_repository_impl.dart';
 import 'package:http/http.dart' as http;
-import 'package:search_apple_app/model/photo.dart';
+import 'package:search_apple_app/domain/model/photo.dart';
 
 import 'pixabay_api_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main(){
   test('Pixabay data must be imported well', () async{
-    final api = PixabayApi();
-    
     final client = MockClient(); // 가짜 객체
+
+    final api = PhotoApiRepositoryImpl(PixabayApi(client));
 
     when(
       client.get(Uri.parse('${PixabayApi.baseUrl}?key=${PixabayApi.key}&q=iphone&image_type=photo'))
     ).thenAnswer((_) async => http.Response(fakeJsonBody, 200));
     
-    final result = await api.fetch('iphone', client: client);
+    final result = await api.fetch('iphone');
 
     // expect(result.length, 20);
     expect(result.first.id, 197);
