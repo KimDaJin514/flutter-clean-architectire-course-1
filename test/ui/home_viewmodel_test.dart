@@ -3,6 +3,7 @@ import 'package:search_apple_app/data/data_source/result.dart';
 import 'package:search_apple_app/domain/repository/photo_api_repository.dart';
 import 'package:search_apple_app/data/respository/photo_api_repository_impl.dart';
 import 'package:search_apple_app/domain/model/photo.dart';
+import 'package:search_apple_app/domain/use_case/get_photos_use_case.dart';
 import 'package:search_apple_app/presentation/home/home_viewmodel.dart';
 
 void main() {
@@ -13,7 +14,7 @@ void main() {
     // PixabayApi 에 문제가 있어도 ViewModel을 테스트할 수 있도록 수정 필요
     // => PixabayApi 를 바로 사용하지말고 인터페이스(PhotoApiRepository)를 만들어서 사용한다.
 
-    final viewModel = HomeViewModel(FakePhotoApiRepository());
+    final viewModel = HomeViewModel(GetPhotosUseCase(FakePhotoApiRepository()));
 
     await viewModel.fetch('apple');
 

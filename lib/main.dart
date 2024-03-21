@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_apple_app/data/data_source/pixabay_api.dart';
 import 'package:search_apple_app/data/respository/photo_api_repository_impl.dart';
+import 'package:search_apple_app/domain/use_case/get_photos_use_case.dart';
 import 'package:search_apple_app/trash/photo_provider.dart';
 import 'package:search_apple_app/presentation/home/home_screen.dart';
 import 'package:search_apple_app/presentation/home/home_viewmodel.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
 
       // Provider 사용
       home: ChangeNotifierProvider(
-        create: (_) => HomeViewModel(PhotoApiRepositoryImpl(PixabayApi(http.Client()))),
+        create: (_) => HomeViewModel(GetPhotosUseCase(PhotoApiRepositoryImpl(PixabayApi(http.Client())))),
         child: const HomeScreen(),
       ),
     );
