@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:search_apple_app/data/data_source/pixabay_api.dart';
+import 'package:search_apple_app/data/data_source/result.dart';
 import 'package:search_apple_app/data/respository/photo_api_repository_impl.dart';
 import 'package:http/http.dart' as http;
 import 'package:search_apple_app/domain/model/photo.dart';
@@ -19,10 +20,10 @@ void main(){
       client.get(Uri.parse('${PixabayApi.baseUrl}?key=${PixabayApi.key}&q=iphone&image_type=photo'))
     ).thenAnswer((_) async => http.Response(fakeJsonBody, 200));
     
-    final result = await api.fetch('iphone');
+    final Result<List<Photo>> result = await api.fetch('iphone');
 
     // expect(result.length, 20);
-    expect(result.first.id, 197);
+    expect((result as Success<List<Photo>>).data.first.id, 197);
 
     // 실제로 해당 코드가 쓰였는지 확인
     verify(client.get(Uri.parse('${PixabayApi.baseUrl}?key=${PixabayApi.key}&q=iphone&image_type=photo')));
