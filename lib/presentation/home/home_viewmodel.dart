@@ -3,6 +3,10 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:search_apple_app/data/data_source/result.dart';
+import 'package:search_apple_app/data/data_source/result.dart';
+import 'package:search_apple_app/data/data_source/result.dart';
+import 'package:search_apple_app/data/data_source/result.dart';
+import 'package:search_apple_app/data/data_source/result.dart';
 import 'package:search_apple_app/domain/repository/photo_api_repository.dart';
 import 'package:search_apple_app/domain/model/photo.dart';
 import 'package:search_apple_app/presentation/home/home_state.dart';
@@ -47,16 +51,27 @@ class HomeViewModel with ChangeNotifier {
 
     final Result<List<Photo>> result = await repository.fetch(query);
 
-    result.when(
-      success: (photos) {
-        // _photos = photos;
-        _state = state.copyWith(photos: photos);
+    // freezed 사용 (Legacy)
+    // result.when(
+    //   success: (photos) {
+    //     // _photos = photos;
+    //     _state = state.copyWith(photos: photos);
+    //     notifyListeners();
+    //   },
+    //   error: (message) {
+    //     _eventController.add(HomeUiEvent.showSnackBar(message));
+    //   },
+    // );
+
+    // dart 지원 sealed 클래스에선 switch 사용
+    switch(result) {
+      case Success<List<Photo>>():
+        _state = state.copyWith(photos: result.data);
         notifyListeners();
-      },
-      error: (message) {
-        _eventController.add(HomeUiEvent.showSnackBar(message));
-      },
-    );
+      case Error<List<Photo>>():
+        _eventController.add(HomeUiEvent.showSnackBar(result.message));
+        notifyListeners();
+    }
 
     _state = state.copyWith(isLoading: false);
     notifyListeners();

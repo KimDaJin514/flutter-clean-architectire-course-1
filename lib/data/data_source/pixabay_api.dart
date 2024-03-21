@@ -19,7 +19,7 @@ class PixabayApi {
 
       return Result.success(hits);
     }catch (e){
-      return const Result.error('에러 발생');
+      return Result.error('에러 발생');
     }
 
   }

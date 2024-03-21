@@ -15,16 +15,23 @@ class PhotoApiRepositoryImpl implements PhotoApiRepository {
   Future<Result<List<Photo>>> fetch(String query) async {
     final Result<Iterable> result = await api.fetch(query);
 
-    // whene : freezed에서 제공하는 타입 검사 메서드
+    // when : freezed에서 제공하는 타입 검사 메서드 (Legacy)
     // 기존 타입 검사는 if(A is B) 이렇게 했던 걸
     // when 으로 안전하게 사용 가능
-    return result.when(
-      success: (iterable) {
-        return Result.success(iterable.map((e) => Photo.fromJson(e)).toList());
-      },
-      error: (message) {
-        return Result.error(message);
-      },
-    );
+    // return result.when(
+    //   success: (iterable) {
+    //     return Result.success(iterable.map((e) => Photo.fromJson(e)).toList());
+    //   },
+    //   error: (message) {
+    //     return Result.error(message);
+    //   },
+    // );
+
+    switch(result) {
+      case Success<Iterable>():
+        return Result.success(result.data.map((e) => Photo.fromJson(e)).toList());
+      case Error<Iterable>():
+        return Result.error(result.message);
+    }
   }
 }
