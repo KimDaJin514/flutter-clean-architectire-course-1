@@ -19,9 +19,12 @@ class GetPhotosUseCase {
 
     switch(result) {
       case Success<List<Photo>>():
-        return Result.success(result.data.sublist(0, min(4, result.data.length)));
+        return Result.success(result.data);
+        // return Result.success(result.data.sublist(0, min(4, result.data.length)));
       case Error<List<Photo>>():
         return Result.error(result.message);
     }
+
+    // return repository.fetch(query);
   }
 }

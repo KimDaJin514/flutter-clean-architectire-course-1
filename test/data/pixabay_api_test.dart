@@ -35,7 +35,7 @@ String fakeJsonBody = """
     "total": 33,
     "totalHits": 33,
     "hits": [
-        {
+    {
             "id": 197,
             "pageURL": "https://pixabay.com/videos/id-197/",
             "type": "film",

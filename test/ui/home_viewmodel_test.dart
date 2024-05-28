@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:search_apple_app/data/data_source/result.dart';
 import 'package:search_apple_app/domain/repository/photo_api_repository.dart';
 import 'package:search_apple_app/data/respository/photo_api_repository_impl.dart';
@@ -92,3 +94,5 @@ List<Map<String, dynamic>> fakeJson = [
         "https://cdn.pixabay.com/user/2015/11/27/06-58-54-609_250x250.jpg"
   },
 ];
+
+

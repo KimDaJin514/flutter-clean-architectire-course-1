@@ -15,7 +15,7 @@ class PhotoApiRepositoryImpl implements PhotoApiRepository {
   Future<Result<List<Photo>>> fetch(String query) async {
     final Result<Iterable> result = await api.fetch(query);
 
-    // when : freezed에서 제공하는 타입 검사 메서드 (Legacy)
+    // when : freezed에서 제공하는 타입 매칭 메서드 (Legacy)
     // 기존 타입 검사는 if(A is B) 이렇게 했던 걸
     // when 으로 안전하게 사용 가능
     // return result.when(
@@ -33,5 +33,6 @@ class PhotoApiRepositoryImpl implements PhotoApiRepository {
       case Error<Iterable>():
         return Result.error(result.message);
     }
+
   }
 }

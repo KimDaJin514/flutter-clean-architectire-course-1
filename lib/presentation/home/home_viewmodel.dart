@@ -85,6 +85,7 @@ class HomeViewModel with ChangeNotifier {
   final GetPhotosUseCase getPhotosUseCase;
 
   // * 뷰모델에서 외부로 보여지는 데이터들은 불변 객체로 읽기 전용으로 만들자 !!
+  // --> freezed로 HomeState 클래스 생성
   HomeState _state = const HomeState([], false);
   HomeState get state => _state;
 
